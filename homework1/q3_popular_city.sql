@@ -22,7 +22,7 @@ SELECT end_station_id AS trip_station_id
 FROM trip
 WHERE start_station_id != end_station_id;
 
-SELECT station.city, 100.0 * COUNT(1) / (SELECT COUNT(1) FROM all_trips) AS ratio
+SELECT station.city, ROUND(100.0 * COUNT(1) / (SELECT COUNT(1) FROM all_trips), 4) AS ratio
 FROM all_trips
 JOIN station ON all_trips.trip_station_id == station.station_id
 GROUP BY station.city
